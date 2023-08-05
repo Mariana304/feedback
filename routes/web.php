@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FeedbackController;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/{token}', function ($token) {
+   
+    $token = Crypt::encryptString($token);
+
+    return to_route('feedback.index', [
+        'token' =>  $token
+    ]);
+
 });
+
+Route::get('/feedback/{token}', [FeedbackController::class, 'index'])->name('feedback.index');
