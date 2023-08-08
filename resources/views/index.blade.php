@@ -8,7 +8,10 @@
 </head>
 <body>
 
-    <div>{{ $token }}</div>
+
+
+
+    {{   $feedback  }}
 
 
     <h1>Hola mundo</h1>   
