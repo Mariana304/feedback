@@ -7,13 +7,8 @@
     <title>Document</title>
 </head>
 <body>
+    
 
-
-
-
-    {{   $feedback  }}
-
-
-    <h1>Hola mundo</h1>   
+    <h1>Graciassss!!!</h1>
 </body>
 </html>

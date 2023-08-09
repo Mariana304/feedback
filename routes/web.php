@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FeedbackController;
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/feedback/{token}',[FeedbackController::class, 'store'])->name('feedback.store');
+
 Route::get('/{token}', function ($token) {
    
     $token = Crypt::encryptString($token);
@@ -25,4 +28,6 @@ Route::get('/{token}', function ($token) {
 
 });
 
+
 Route::get('/feedback/{token}', [FeedbackController::class, 'index'])->name('feedback.index');
+

@@ -17,9 +17,9 @@ return new class extends Migration
             $table->integer('ticket_id');
             $table->enum('rating', [1,2,3]);
             $table->string('status');
-            $table->mediumText('comments');
+            $table->mediumText('comments')->nullable();
             $table->string('user_ip');
-            $table->date('date');
+            $table->string('date');
             $table->timestamps();
         });
     }
