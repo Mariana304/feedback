@@ -9,21 +9,21 @@ use Illuminate\Support\Facades\Crypt;
 
 class FeedbackController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
     public function index(Request $request)
     {
         try {
+            $tokenEncrypted = $request->token;
+            $token = Crypt::decryptString($tokenEncrypted);
 
-
-            $token = Crypt::decryptString($request->token);
-        } catch (Exception $e) {
+        } catch (\Throwable $th) {
             return view('feedbackError', ['message' => 'Petición inválida']);
         }
 
         $feedback =  $this->decodeToken($token);
+
+        $ticket_number =  $feedback->ticket_number;
+        $ticket_rating = $feedback->rating;
+
 
 
         date_default_timezone_set('America/Bogota');
@@ -32,34 +32,30 @@ class FeedbackController extends Controller
 
         $starred = Feedback::where('ticket_id', $feedback->ticket_id)->count();
 
+        if ($starred > 1) {
 
-
-        if ($starred == 0) {
+            return view('feedbackError', ['message' => 'Usted ya calificó este ticket.']);
+        } else {
             if ($limit > time()) {
-
-                $token = Crypt::encryptString($token);
-
-                return view('feedbackEdit', compact('token'));
+                return view('feedbackEdit', compact('tokenEncrypted', 'ticket_number', 'ticket_rating'));
             } else {
                 return view('feedbackError', ['message' => 'Este enlace ha expirado.']);
             }
-            return view('feedbackError', ['message' => 'Usted ya calificó este ticket.']);
         }
     }
 
 
     public function store(Request $request)
     {
+        $feedback =  $this->decodeToken(Crypt::decryptString($request->encrypted));
+        // dd($request->rating);
 
-        $token = Crypt::decryptString($request->token);
-
-        $feedback =  $this->decodeToken($token);
+        $feedback->rating = $request->rating;
         $feedback->comments = $request->comments;
 
         $feedback->save();
 
-
-        return view('gracias');
+        return to_route('feedback.gracias');
     }
 
 
@@ -76,6 +72,11 @@ class FeedbackController extends Controller
             $feedback->status =  $data[1];
             $feedback->user_ip = $_SERVER['REMOTE_ADDR'];
             $feedback->date =  $data[2];
+
+      
+                 
+           
+
         } catch (\Throwable $th) {
             return view('feedbackError', ['message' => 'Parámetros no válidos']);
         }

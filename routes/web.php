@@ -16,18 +16,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/feedback/{token}',[FeedbackController::class, 'store'])->name('feedback.store');
+Route::get('/gracias', function(){
+return view('gracias');
+})->name('feedback.gracias');
+
+Route::post('/feedback',[FeedbackController::class, 'store'])->name('feedback.store');
+Route::get('/feedback/{token}', [FeedbackController::class, 'index'])->name('feedback.index');
 
 Route::get('/{token}', function ($token) {
    
-    $token = Crypt::encryptString($token);
 
+
+         $token = Crypt::encryptString($token);
     return to_route('feedback.index', [
-        'token' =>  $token
-    ]);
+        'token' =>  $token]);
 
+  
+   
+
+   
 });
 
 
-Route::get('/feedback/{token}', [FeedbackController::class, 'index'])->name('feedback.index');
+
+
+
+
 
