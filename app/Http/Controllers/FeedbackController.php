@@ -48,7 +48,7 @@ class FeedbackController extends Controller
     public function store(Request $request)
     {
         $feedback =  $this->decodeToken(Crypt::decryptString($request->encrypted));
-        // dd($request->rating);
+        
 
         $feedback->rating = $request->rating;
         $feedback->comments = $request->comments;
@@ -72,11 +72,7 @@ class FeedbackController extends Controller
             $feedback->status =  $data[1];
             $feedback->user_ip = $_SERVER['REMOTE_ADDR'];
             $feedback->date =  $data[2];
-
-      
-                 
-           
-
+             
         } catch (\Throwable $th) {
             return view('feedbackError', ['message' => 'Parámetros no válidos']);
         }

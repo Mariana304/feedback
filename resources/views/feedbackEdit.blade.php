@@ -50,7 +50,6 @@
                     ¿Cómo calificas la atención que te hemos brindado en la solución del caso
                     #{{ $ticket_number }}?
 
-                    <input type="hidden" name="old_rating" id="old_rating" value="{{ $ticket_rating }}" >
                  
 
                     {{ 'old_rating' == $ticket_rating ? 'si' : 'no' }}
