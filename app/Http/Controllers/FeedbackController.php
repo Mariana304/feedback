@@ -30,7 +30,7 @@ class FeedbackController extends Controller
 
         $limit = strtotime($feedback->date) + 5184000;
 
-        $starred = Feedback::where('ticket_id', $feedback->ticket_id)->count();
+        $starred = Feedback::where('ticket_number', $ticket_number)->count();
 
         if ($starred > 1) {
 
@@ -49,7 +49,7 @@ class FeedbackController extends Controller
     {
         $feedback =  $this->decodeToken(Crypt::decryptString($request->encrypted));
         
-
+       
         $feedback->rating = $request->rating;
         $feedback->comments = $request->comments;
 
