@@ -28,10 +28,10 @@ Route::get('/{token}', function ($token) {
          $token = Crypt::encryptString($token);
     return to_route('feedback.index', [
         'token' =>  $token]);
-
-  
  
 });
+
+//Hola :D
 
 
 

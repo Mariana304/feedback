@@ -35,6 +35,8 @@
 
     <form action="{{ route('feedback.store') }}" method="post">
 
+    
+
         @csrf
 
         <input type="hidden" name="encrypted" value="{{ $tokenEncrypted }}">
