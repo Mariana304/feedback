@@ -24,16 +24,10 @@ class FeedbackController extends Controller
         $ticket_number =  $feedback->ticket_number;
         $ticket_rating = $feedback->rating;
 
-
-
         date_default_timezone_set('America/Bogota');
-
         $limit = strtotime($feedback->date) + 5184000;
-
-
         $starred = Feedback::where('ticket_id', $feedback->ticket_id)->count();
 
-        
         if ($starred > 0){
             return view('feedbackError', ['message' => 'Usted ya calificó este ticket.']);
         } else {
@@ -42,17 +36,13 @@ class FeedbackController extends Controller
             } else {
                 return view('feedbackError', ['message' => 'Este enlace ha expirado.']);
             }
-        }
-
-
-        
+        }       
     }
 
 
     public function store(Request $request)
     {
         $feedback =  $this->decodeToken(Crypt::decryptString($request->encrypted)); 
-
 
         if($request->rating == null){
             $feedback->comments = $request->comments;                  
