@@ -26,7 +26,9 @@ class FeedbackController extends Controller
 
         date_default_timezone_set('America/Bogota');
         $limit = strtotime($feedback->date) + 5184000;
+
         $starred = Feedback::where('ticket_id', $feedback->ticket_id)->count();
+
 
         if ($starred > 0){
 
@@ -44,6 +46,7 @@ class FeedbackController extends Controller
     public function store(Request $request)
     {
 
+
         $feedback =  $this->decodeToken(Crypt::decryptString($request->encrypted)); 
 
         if($request->rating == null){
@@ -52,6 +55,7 @@ class FeedbackController extends Controller
             $feedback->rating = $request->rating;
             $feedback->comments = $request->comments;          
         }
+
 
         $feedback->save();
         return to_route('feedback.gracias');

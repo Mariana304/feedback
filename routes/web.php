@@ -25,16 +25,12 @@ Route::get('/feedback/{token}', [FeedbackController::class, 'index'])->name('fee
 
 Route::get('/{token}', function ($token) {
    
-
-
          $token = Crypt::encryptString($token);
     return to_route('feedback.index', [
         'token' =>  $token]);
 
   
-   
-
-   
+ 
 });
 
 

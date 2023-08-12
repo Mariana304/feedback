@@ -48,7 +48,9 @@
                 </p>
             </div>
             <div class=" sm:mx-auto mx-auto mb-1 ">
+
                 <div class="grid grid-cols-1 md:grid-cols-3 md:flex mx-3  sm:mx-auto sm:mt-9">
+
                     <li class="list-none">
                         <input type="radio" name="rating" id="excelente" value="3"
                             class="hidden btn excelente peer">
@@ -57,7 +59,6 @@
                             <p class="text-xl mt-2">
                                 ¡Excelente!
                             </p>
-
                             <img class="w-18 h-18 mt-1 mx-9 "src="{{ asset('images/excelente.gif') }}">
                         </label>
                     </li>
@@ -81,24 +82,16 @@
                                 Regular
                             </p>
                             <img class="w-18 h-18 mt-1 mx-9 " src="{{ asset('images/triste.gif') }}">
-
-
                         </label>
-
                     </li>
-
                 </div>
-
             </div>
-
-            <div class=" text-center mx-auto w-auto text-2xl  mb-5 mt-16 ">
+            <div class=" text-center mx-auto w-auto text-2xl  mb-5 mt-9 ">
                 <p class="mx-16 text-xl   text-gray-500 ">
                     ¿Te gustaría compartirnos algún comentario
                     o sugerencia?
-
                 </p>
             </div>
-
             <div>
                 <textarea class="border border-gray-300 rounded-lg mb-5 w-60 md:w-auto mx-2" name="comments" cols="70"
                     rows="5"></textarea>
