@@ -9,10 +9,7 @@
 
 </head>
 <body>
-
-
-    <div
-        class="container shadow-lg bg-white rounded-lg mb-16 h-auto w-96 sm:w-3/4 xl:w-2/4 2xl:w-2/5 flex flex-col text-center mx-auto  mt-28">
+    <div class="container shadow-lg bg-white rounded-lg mb-16 h-auto w-96 sm:w-3/4 xl:w-2/4 2xl:w-2/5 flex flex-col text-center mx-auto  mt-28">
         <div class=" text-center    mx-auto w-auto text-2xl   my-24 mb-17">
             <div class="mb-4 ">
 
@@ -22,26 +19,14 @@
                 @else
                     <img class=" w-28 md:w-32 mx-auto mt-4 animate-bounce animate-infinite animate-ease-linear animate-normal animate-fill-forwards "
                 src="{{ asset ('images/waring.gif') }}">
-                @endif
-
-                
+                @endif                
             </div>
             <div class="mb-7">
                 <p class="mx-16 mt-10 text-lg sm:text-3xl font-semibold text-neutral-600  mb-26   px-9 rounded-lg py-1 ">
-
-                    {{ $message }}
-                                       
+                    {{ $message }}                                     
                 </p>
             </div>
         </div>
     </div>
-
-
-
-
-
-    
-
-
 </body>
 </html>

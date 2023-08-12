@@ -30,10 +30,11 @@ class FeedbackController extends Controller
 
         $limit = strtotime($feedback->date) + 5184000;
 
+
         $starred = Feedback::where('ticket_id', $feedback->ticket_id)->count();
 
-        if ($starred > 1) {
-
+        
+        if ($starred > 0){
             return view('feedbackError', ['message' => 'Usted ya calificó este ticket.']);
         } else {
             if ($limit > time()) {
@@ -42,37 +43,42 @@ class FeedbackController extends Controller
                 return view('feedbackError', ['message' => 'Este enlace ha expirado.']);
             }
         }
+
+
+        
     }
 
 
     public function store(Request $request)
     {
-        $feedback =  $this->decodeToken(Crypt::decryptString($request->encrypted));
-        
+        $feedback =  $this->decodeToken(Crypt::decryptString($request->encrypted)); 
 
-        $feedback->rating = $request->rating;
-        $feedback->comments = $request->comments;
+
+        if($request->rating == null){
+            $feedback->comments = $request->comments;                  
+        }else{         
+            $feedback->rating = $request->rating;
+            $feedback->comments = $request->comments;          
+        }
 
         $feedback->save();
-
         return to_route('feedback.gracias');
+       
+        
     }
 
 
     protected function decodeToken($token)
     {
         $data = explode('W', $token);
-
         $feedback = new Feedback();
-
         try {
             $feedback->ticket_number = substr($data[0], 5, 6);
             $feedback->ticket_id = substr($data[0], 11);
             $feedback->rating = substr($data[0], 4, 1);
             $feedback->status =  $data[1];
             $feedback->user_ip = $_SERVER['REMOTE_ADDR'];
-            $feedback->date =  $data[2];
-             
+            $feedback->date =  $data[2];             
         } catch (\Throwable $th) {
             return view('feedbackError', ['message' => 'Parámetros no válidos']);
         }
