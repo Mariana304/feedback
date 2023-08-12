@@ -44,9 +44,7 @@
             <div class=" text-center mx-auto w-auto text-2xl  mb-5 mt-9 ">
                 <p class="mx-16  font-semibold   ">
                     ¿Cómo calificas la atención que te hemos brindado en la solución del caso
-
                     <span class="text-pink-700">#{{ $ticket_number }}?</span>
-
                 </p>
             </div>
             <div class=" sm:mx-auto mx-auto mb-1 ">
@@ -59,6 +57,7 @@
                             <p class="text-xl mt-2">
                                 ¡Excelente!
                             </p>
+
                             <img class="w-18 h-18 mt-1 mx-9 "src="{{ asset('images/excelente.gif') }}">
                         </label>
                     </li>
@@ -82,16 +81,24 @@
                                 Regular
                             </p>
                             <img class="w-18 h-18 mt-1 mx-9 " src="{{ asset('images/triste.gif') }}">
+
+
                         </label>
+
                     </li>
+
                 </div>
+
             </div>
-            <div class=" text-center mx-auto w-auto text-2xl  mb-5 mt-9 ">
+
+            <div class=" text-center mx-auto w-auto text-2xl  mb-5 mt-16 ">
                 <p class="mx-16 text-xl   text-gray-500 ">
                     ¿Te gustaría compartirnos algún comentario
                     o sugerencia?
+
                 </p>
             </div>
+
             <div>
                 <textarea class="border border-gray-300 rounded-lg mb-5 w-60 md:w-auto mx-2" name="comments" cols="70"
                     rows="5"></textarea>

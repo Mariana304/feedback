@@ -29,6 +29,7 @@ class FeedbackController extends Controller
         $starred = Feedback::where('ticket_id', $feedback->ticket_id)->count();
 
         if ($starred > 0){
+
             return view('feedbackError', ['message' => 'Usted ya calificó este ticket.']);
         } else {
             if ($limit > time()) {
@@ -42,6 +43,7 @@ class FeedbackController extends Controller
 
     public function store(Request $request)
     {
+
         $feedback =  $this->decodeToken(Crypt::decryptString($request->encrypted)); 
 
         if($request->rating == null){
@@ -56,7 +58,6 @@ class FeedbackController extends Controller
        
         
     }
-
 
     protected function decodeToken($token)
     {
