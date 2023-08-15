@@ -79,4 +79,13 @@ class FeedbackController extends Controller
         }
         return $feedback;
     }
+
+
+
+    public function show(){
+
+        $feedback = Feedback::all();
+
+        return view('show', compact('feedback'));
+    }
 }

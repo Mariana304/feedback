@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/Consulta', [FeedbackController::class, 'show'])->name('feedback.show');
 
 Route::get('/gracias', function(){
 return view('gracias');
@@ -30,6 +31,7 @@ Route::get('/{token}', function ($token) {
         'token' =>  $token]);
  
 });
+
 
 //Hola :D
 
