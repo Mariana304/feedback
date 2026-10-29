@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/34157276/README.md)
 # Ticket Feedback System
 
 A Laravel web app that lets customers rate the support they received on a ticket and leave comments, through a secure one-time link.
